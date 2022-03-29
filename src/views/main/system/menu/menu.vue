@@ -32,10 +32,13 @@ import { modalConfig } from './config/modal.config'
 import { usePageModal } from '@/hooks/use-page-modal'
 
 const newCallback = () => {
-  console.log('执行回调')
+  const parentIdItem = modalConfig.formItems.find((v) => {
+    return v.field === 'parentId'
+  })
+
+  parentIdItem!.isHidden = false
 }
 const editCallback = (item: any) => {
-  console.log(item)
   const parentIdItem = modalConfig.formItems.find((v) => {
     return v.field === 'parentId'
   })

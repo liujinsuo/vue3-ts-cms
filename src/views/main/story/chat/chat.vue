@@ -1,7 +1,19 @@
 <template>
-  <div class="chat">chat</div>
+  <div class="chat">
+    <base-editor v-model:value="htmlString"></base-editor>
+  </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue'
+import BaseEditor from '@/base-ui/editor'
 
-<style lang="less" scoped></style>
+const htmlString = ref('你好啊')
+</script>
+
+<style lang="less" scoped>
+.chat {
+  text-align: left;
+  margin-top: 20px;
+}
+</style>

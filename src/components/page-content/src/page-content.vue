@@ -80,6 +80,7 @@ import {
 import { usePermission } from '@/hooks/use-permission'
 import { useStore } from '@/store'
 import { IContentTableConfig } from './types'
+import { ElMessage } from 'element-plus'
 
 const props = defineProps<{
   contentTableConfig: IContentTableConfig
@@ -98,7 +99,10 @@ const pageInfo = ref({ currentPage: 1, pageSize: 10 })
 watch(pageInfo, () => getPageData())
 
 const getPageData = (queryInfo: any = {}) => {
-  if (!isQuery) return
+  if (!isQuery) {
+    ElMessage.error('权限不足')
+    return
+  }
   store.dispatch('system/getPageListAction', {
     pageName: props.pageName,
     queryInfo: {
@@ -110,8 +114,8 @@ const getPageData = (queryInfo: any = {}) => {
 }
 getPageData()
 
-const dataList = computed(() =>
-  store.getters[`system/pageListData`](props.pageName)
+const dataList = computed(
+  () => store.getters[`system/pageListData`](props.pageName) ?? []
 )
 const dataCount = computed(() =>
   store.getters[`system/pageListCount`](props.pageName)
@@ -133,8 +137,8 @@ const handleDeleteClick = (item: any) => {
   })
 }
 const handleNewClick = () => {
-  console.log('contentTableConfig', props.contentTableConfig)
-  console.log('title', props.contentTableConfig.title)
+  // console.log('contentTableConfig', props.contentTableConfig)
+  // console.log('title', props.contentTableConfig.title)
   emit('newBtnClick')
 }
 const handleEditClick = (item: any) => {

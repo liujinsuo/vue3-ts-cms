@@ -12,6 +12,8 @@ import {
   ElConfigProvider,
   ElContainer,
   ElDatePicker,
+  ElDescriptions,
+  ElDescriptionsItem,
   ElDialog,
   ElDropdown,
   ElDropdownItem,
@@ -38,6 +40,8 @@ import {
   ElTableColumn,
   ElTabPane,
   ElTabs,
+  ElTag,
+  ElTooltip,
   ElTree
 } from 'element-plus'
 
@@ -79,7 +83,11 @@ const components = [
   ElPopover,
   ElImage,
   ElInputNumber,
-  ElCard
+  ElCard,
+  ElTooltip,
+  ElDescriptions,
+  ElDescriptionsItem,
+  ElTag
 ]
 export default function (app: App): void {
   for (const component of components) {
